@@ -52,3 +52,23 @@ int main() {
     }
     double avgSerialTime = totalSerialTime / NUM_RUNS;
     printf("Serial Execution: Avg Time = %.3f ms, Max = %d\n", avgSerialTime, maxSerial);
+    // Define configurations for static scheduling.
+    // Testing with 4, 16, and 32 threads using chunk sizes 100, 200, and 400 respectively.
+    int threads[3] = {4, 16, 32};
+    int chunks[3]  = {100, 200, 400};
+    double avgStatic[3] = {0.0, 0.0, 0.0};
+    int maxVal;
+
+    // Loop through each configuration.
+    for (int config = 0; config < 3; config++) {
+        double totalTime = 0.0;
+        for (int run = 0; run < NUM_RUNS; run++) {
+            clock_t start = clock();
+            maxVal = findMaxStatic(arr, threads[config], chunks[config]);
+            clock_t end = clock();
+            totalTime += ((double)(end - start) / CLOCKS_PER_SEC) * 1000.0;
+        }
+        avgStatic[config] = totalTime / NUM_RUNS;
+        printf("Static Scheduling: %d threads (chunk size = %d): Avg Time = %.3f ms, Max = %d\n", 
+               threads[config], chunks[config], avgStatic[config], maxVal);
+    }
