@@ -72,3 +72,5 @@ int main() {
         printf("Static Scheduling: %d threads (chunk size = %d): Avg Time = %.3f ms, Max = %d\n", 
                threads[config], chunks[config], avgStatic[config], maxVal);
     }
+    return 0;
+}
