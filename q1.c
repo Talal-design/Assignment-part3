@@ -42,3 +42,8 @@ int main() {
 
         printf("Sequential Run %d: Max = %d, Time = %.3f ms\n", i + 1, maxElement, duration);
     }
+    // Compute and print the average execution time
+    printf("Average sequential execution time: %.3f ms\n", totalTime / NUM_RUNS);
+
+    return 0;
+}
