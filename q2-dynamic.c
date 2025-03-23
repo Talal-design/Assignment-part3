@@ -78,3 +78,5 @@ int main() {
         printf("Dynamic Scheduling: %d threads (chunk size = %d): Avg Time = %.3f ms, Max = %d\n", 
                threads[config], chunks[config], avgDynamic[config], maxVal);
     }
+    return 0;
+}
