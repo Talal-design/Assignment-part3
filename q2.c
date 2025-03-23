@@ -37,3 +37,18 @@ int main() {
     for (int i = 0; i < ROWS; i++)
         for (int j = 0; j < COLS; j++)
             arr[i][j] = rand() % 1000000;  // Random numbers between 0 and 999999.
+    // Serial Execution: Baseline measurement.
+    double totalSerialTime = 0.0;
+    int maxSerial;
+    for (int run = 0; run < NUM_RUNS; run++) {
+        clock_t start = clock();  // Start time measurement.
+        maxSerial = arr[0][0];
+        for (int i = 0; i < ROWS; i++)
+            for (int j = 0; j < COLS; j++)
+                if (arr[i][j] > maxSerial)
+                    maxSerial = arr[i][j];
+        clock_t end = clock();    // End time measurement.
+        totalSerialTime += ((double)(end - start) / CLOCKS_PER_SEC) * 1000.0;  // Convert to milliseconds.
+    }
+    double avgSerialTime = totalSerialTime / NUM_RUNS;
+    printf("Serial Execution: Avg Time = %.3f ms, Max = %d\n", avgSerialTime, maxSerial);
