@@ -57,3 +57,24 @@ int main() {
     }
     double avgSerialTime = totalSerialTime / NUM_RUNS;
     printf("Serial Execution: Avg Time = %.3f ms, Max = %d\n", avgSerialTime, maxSerial);
+    // Define configurations for dynamic scheduling.
+    // Here we use the same configurations as for static scheduling:
+    // 4 threads with chunk size 100, 16 threads with chunk size 200, 32 threads with chunk size 400.
+    int threads[3] = {4, 16, 32};
+    int chunks[3]  = {100, 200, 400};
+    double avgDynamic[3] = {0.0, 0.0, 0.0};
+    int maxVal;
+    
+    // Loop through each configuration.
+    for (int config = 0; config < 3; config++) {
+        double totalTime = 0.0;
+        for (int run = 0; run < NUM_RUNS; run++) {
+            clock_t start = clock();  // Start time measurement.
+            maxVal = findMaxDynamic(arr, threads[config], chunks[config]);
+            clock_t end = clock();    // End time measurement.
+            totalTime += ((double)(end - start) / CLOCKS_PER_SEC) * 1000.0;
+        }
+        avgDynamic[config] = totalTime / NUM_RUNS;
+        printf("Dynamic Scheduling: %d threads (chunk size = %d): Avg Time = %.3f ms, Max = %d\n", 
+               threads[config], chunks[config], avgDynamic[config], maxVal);
+    }
