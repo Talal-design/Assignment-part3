@@ -15,3 +15,17 @@ int main() {
         }
     }
 
+    // Function to find the maximum element in a 2D array (sequential)
+    int findMaxSequential(int arr[ROWS][COLS]) {
+        int maxElement = arr[0][0]; // Initialize maxElement with the first element
+
+        // Iterate through the 2D array sequentially to find the maximum element
+        for (int i = 0; i < ROWS; ++i) {
+            for (int j = 0; j < COLS; ++j) {
+                if (arr[i][j] > maxElement) {
+                    maxElement = arr[i][j];
+                }
+            }
+        }
+        return maxElement;
+    }
