@@ -29,3 +29,11 @@ int findMaxStatic(int arr[ROWS][COLS], int numThreads, int chunkSize) {
     }
     return maxElement;  // Return the maximum element found.
 }
+int main() {
+    int arr[ROWS][COLS];  // Declare the 2D array.
+    srand(time(NULL));    // Seed the random number generator.
+
+    // Fill the 2D array with random values.
+    for (int i = 0; i < ROWS; i++)
+        for (int j = 0; j < COLS; j++)
+            arr[i][j] = rand() % 1000000;  // Random numbers between 0 and 999999.
