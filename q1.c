@@ -29,3 +29,16 @@ int main() {
         }
         return maxElement;
     }
+    double totalTime = 0.0; // Variable to store total execution time
+
+    // Execute the max-finding function multiple times and measure time
+    for (int i = 0; i < NUM_RUNS; ++i) {
+        clock_t start = clock(); // Start time measurement
+        int maxElement = findMaxSequential(arr); // Find max element sequentially
+        clock_t end = clock(); // End time measurement
+
+        double duration = ((double)(end - start) / CLOCKS_PER_SEC) * 1000.0; // Convert to milliseconds
+        totalTime += duration;
+
+        printf("Sequential Run %d: Max = %d, Time = %.3f ms\n", i + 1, maxElement, duration);
+    }
